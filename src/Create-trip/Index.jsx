@@ -31,14 +31,16 @@ function CreateTrip() {
   })
 
   const OnGenerateTrip = async() => {
+    console.log("OnGenerateTrip called");
+    
+  const storedUser = localStorage.getItem("user");
 
-    const user = localStorage.getItem('user');
-
-    if(!user){
-      console.log("User not found, opening dialog...");
-      setOpenDailog(true);
-      return ;
-    }
+  if (!storedUser) {
+    console.log("User not found, opening dialog...");
+    setOpenDailog(true);
+    console.log("Dialog should be open:", openDailog);
+    return;
+  }
 
     let newErrors = {};
   
@@ -261,7 +263,7 @@ function CreateTrip() {
             <DialogDescription>
               <DialogTitle className="font-bold text-[32px] mt-4 mb-4 text-black items-center flex justify-center">Let's Start with TravelX</DialogTitle>
               <p className="w-[450px] text-center">To access all the functionalities and services, please log in to your account first.</p>
-              <Button variant="outline" className={"w-full mt-4 flex gap-2 items-center border-1 border-black"}><FcGoogle className="h-24 w-24"/>Continue with Google</Button>
+              <Button onClick={login} variant="outline" className={"w-full mt-4 flex gap-2 items-center border-1 border-black"}><FcGoogle className="h-24 w-24"/>Continue with Google</Button>
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
